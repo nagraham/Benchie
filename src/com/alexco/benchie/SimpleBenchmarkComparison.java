@@ -10,7 +10,7 @@ public class SimpleBenchmarkComparison implements BenchmarkComparison {
 		return null;
 	}
 	
-	public int getTime() {
+	public double getTime() {
 		return -1;
 	}
 	

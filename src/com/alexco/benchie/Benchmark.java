@@ -2,6 +2,7 @@ package com.alexco.benchie;
 
 public interface Benchmark {
 	// public Statistics getStatistics
-	public int getTime();
+	
+	public double getTime();
 	public void print();
 }
