@@ -15,7 +15,7 @@ public class SimpleBenchmark implements Benchmark {
 	}
 	
 	public void print() {
-		System.out.println("SimpleBenchmark!");
+		System.out.println(toString());
 	}
 	
 	public String toString() {
