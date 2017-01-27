@@ -8,7 +8,6 @@ public class SimpleBenchmark implements Benchmark {
 		long startTime = System.nanoTime();
 		algorithm.execute();
 		time = System.nanoTime() - startTime;
-		System.out.println(getTime());
 	}
 
 	public double getTime() {
@@ -17,6 +16,10 @@ public class SimpleBenchmark implements Benchmark {
 	
 	public void print() {
 		System.out.println("SimpleBenchmark!");
+	}
+	
+	public String toString() {
+		return getTime() + "ms";
 	}
 	
 }
