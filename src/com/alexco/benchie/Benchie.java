@@ -2,11 +2,11 @@ package com.alexco.benchie;
 
 public class Benchie {
 	
-	public Benchmark run(Benchmarkable algorithm) {
-		return null;
+	public static Benchmark run(Benchmarkable algorithm) {
+		return new SimpleBenchmark(algorithm);
 	}
 	
-	public BenchmarkComparison compare() {
+	public static BenchmarkComparison compare() {
 		return null;
 	}
 }

@@ -8,10 +8,6 @@ import static org.hamcrest.Matchers.lessThan;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,7 +16,10 @@ import org.junit.Test;
 public class TestSimpleBenchmark {
 	
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream(); 
-	private final SimpleBenchmark sb = new SimpleBenchmark(() -> { runAlgorithm(100); });
+	private final SimpleBenchmark sb = new SimpleBenchmark(() -> { Utils.runGenericAlgorithm(100); });
+	private final SimpleBenchmark sbWithName = new SimpleBenchmark("Generic Algorithm", () -> {
+		Utils.runGenericAlgorithm(100);
+	});
 	
 	@Before
 	public void setUpPrintStream() {
@@ -33,9 +32,16 @@ public class TestSimpleBenchmark {
 	}
 
 	@Test
-	public void testConstructorAndGetTime_simpleAlgorithm() {
+	public void testConstructorAndGetTime_genericAlgorithm() {
 		assertThat(sb.getTime(), greaterThan(0.0));
 		assertThat(sb.getTime(), lessThan(1000.0));
+	}
+	
+	@Test
+	public void testConstructorWithName_genericAlgorithm() {
+		assertThat(sbWithName.getTime(), greaterThan(0.0));
+		assertThat(sbWithName.getTime(), lessThan(1000.0));
+		assertThat(sbWithName.getName(), equalTo("Generic Algorithm"));
 	}
 	
 	@Test
@@ -47,15 +53,6 @@ public class TestSimpleBenchmark {
 	public void testPrint() {
 		sb.print();
 		assertThat(sb.toString() + "\n", equalTo(output.toString()));
-	}
-	
-	private void runAlgorithm(int n) {
-		List<String> list = new ArrayList<String>(n);
-		Random rand = new Random();
-		for (int i = 0; i < n; i++) {
-			list.add(String.valueOf(Character.toChars(rand.nextInt(255))));
-		}
-		Collections.sort(list);
 	}
 
 }
