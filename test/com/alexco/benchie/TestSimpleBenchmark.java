@@ -51,14 +51,20 @@ public class TestSimpleBenchmark {
 	
 	@Test
 	public void testToStringWithName() {
-		String result = sbWithName.getName() + ": " + sbWithName.getTime() + "ms";
-		assertThat(sbWithName.toString(), equalTo(result));
+		String expectedResult = sbWithName.getName() + ": " + sbWithName.getTime() + "ms";
+		assertThat(sbWithName.toString(), equalTo(expectedResult));
 	}
 	
 	@Test
 	public void testPrint() {
 		sb.print();
-		assertThat(sb.toString() + "\n", equalTo(output.toString()));
+		assertThat(output.toString(), equalTo(sb.toString() + "\n"));
+	}
+	
+	@Test
+	public void testPrintWithName() {
+		sbWithName.print();
+		assertThat(output.toString(), equalTo(sbWithName.toString() + "\n"));
 	}
 
 }

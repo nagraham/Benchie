@@ -10,6 +10,10 @@ public class SimpleBenchmarkComparison implements BenchmarkComparison {
 		return null;
 	}
 	
+	public String getName() {
+		return null;
+	}
+	
 	public double getTime() {
 		return -1;
 	}
