@@ -1,13 +1,17 @@
 package com.alexco.benchie;
 
+// NOTE: To create a different implementation of how benchmarks are run,
+// (e.g. to implement concurrent benchmarks) you could simply create a
+// child class off this class, and override "createTime"
 public class SimpleBenchmark implements Benchmark {
 	
 	private final long time;
 	private final String name;
 	
+
 	public SimpleBenchmark(Benchmarkable algorithm) {
 		this.time = createTime(algorithm);
-		this.name = null;
+		this.name = "";
 	}
 	
 	public SimpleBenchmark(String name, Benchmarkable algorithm) {
@@ -28,7 +32,14 @@ public class SimpleBenchmark implements Benchmark {
 	}
 	
 	public String toString() {
-		return getTime() + "ms";
+		StringBuilder sb = new StringBuilder();
+		if (name.length() > 0) { 
+			sb.append(name);
+			sb.append(": ");
+		}
+		sb.append(getTime());
+		sb.append("ms");
+		return sb.toString();
 	}
 	
 	private long createTime(Benchmarkable algorithm) {

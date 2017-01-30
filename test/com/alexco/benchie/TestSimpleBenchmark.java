@@ -50,6 +50,12 @@ public class TestSimpleBenchmark {
 	}
 	
 	@Test
+	public void testToStringWithName() {
+		String result = sbWithName.getName() + ": " + sbWithName.getTime() + "ms";
+		assertThat(sbWithName.toString(), equalTo(result));
+	}
+	
+	@Test
 	public void testPrint() {
 		sb.print();
 		assertThat(sb.toString() + "\n", equalTo(output.toString()));
