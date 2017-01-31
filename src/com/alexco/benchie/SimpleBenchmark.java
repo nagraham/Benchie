@@ -8,7 +8,6 @@ public class SimpleBenchmark implements Benchmark {
 	private final long time;
 	private final String name;
 	
-
 	public SimpleBenchmark(Benchmarkable algorithm) {
 		this.time = createTime(algorithm);
 		this.name = "";
