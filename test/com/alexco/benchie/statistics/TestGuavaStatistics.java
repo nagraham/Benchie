@@ -12,7 +12,6 @@ import org.junit.Test;
 
 public class TestGuavaStatistics {
 
-	// sum: 143
 	List<Double> doubleSampleSet = new ArrayList<>(
 		Arrays.asList(new Double[] { 1.0, 1.0, 2.0, 3.0, 5.0, 8.0, 13.0, 21.0, 34.0, 55.0 })
 	);
@@ -49,6 +48,26 @@ public class TestGuavaStatistics {
 	@Test
 	public void testMin() {
 		assertThat(gs.min(), equalTo(1.0));
+	}
+	
+	@Test
+	public void testSample() {
+		assertThat(gs.sample(), equalTo(doubleSampleSet));
+	}
+	
+	@Test
+	public void testStddev() {
+		assertThat(String.format("%.5f", gs.stddev()), equalTo("16.88224"));
+	}
+	
+	@Test
+	public void testSum() {
+		assertThat(gs.sum(), equalTo(143.0));
+	}
+	
+	@Test
+	public void testVariance() {
+		assertThat(gs.variance(), equalTo(285.01));
 	}
 	
 }

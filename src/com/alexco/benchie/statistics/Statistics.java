@@ -9,12 +9,13 @@ public interface Statistics {
 	public double mean();
 	public double median();
 	public double min();
+	public List<Double> sample();
 	public double stddev();
 	public double sum();
 	public double variance();
 	
-//	public static Statistic create(List<Double> set) {
-//		return null;
-//	}
+	public static Statistics create(List<Double> sample) {
+		return new GuavaStatistics(sample);
+	}
 	
 }

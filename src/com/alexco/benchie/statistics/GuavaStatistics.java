@@ -40,16 +40,20 @@ public class GuavaStatistics implements Statistics {
 		return stat.min();
 	}
 	
+	public List<Double> sample() {
+		return sample;
+	}
+	
 	public double stddev() {
-		return -1.0;
+		return stat.populationStandardDeviation();
 	}
 	
 	public double sum() {
-		return -1.0;
+		return stat.sum();
 	}
 	
 	public double variance() {
-		return -1.0;
+		return stat.populationVariance();
 	}
 	
 }
