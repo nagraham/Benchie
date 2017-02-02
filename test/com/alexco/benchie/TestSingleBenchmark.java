@@ -13,11 +13,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestSimpleBenchmark {
+public class TestSingleBenchmark {
 	
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream(); 
-	private final SimpleBenchmark sb = new SimpleBenchmark(() -> { Utils.runGenericAlgorithm(100); });
-	private final SimpleBenchmark sbWithName = new SimpleBenchmark("Generic Algorithm", () -> {
+	private final SingleBenchmark sb = new SingleBenchmark(() -> { Utils.runGenericAlgorithm(100); });
+	private final SingleBenchmark sbWithName = new SingleBenchmark("Generic Algorithm", () -> {
 		Utils.runGenericAlgorithm(100);
 	});
 	
