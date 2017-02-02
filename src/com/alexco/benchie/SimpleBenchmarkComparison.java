@@ -1,5 +1,7 @@
 package com.alexco.benchie;
 
+import com.alexco.benchie.statistics.Statistics;
+
 public class SimpleBenchmarkComparison implements BenchmarkComparison {
 
 	public SimpleBenchmarkComparison add() {
@@ -11,6 +13,10 @@ public class SimpleBenchmarkComparison implements BenchmarkComparison {
 	}
 	
 	public String getName() {
+		return null;
+	}
+	
+	public Statistics getStatistics() {
 		return null;
 	}
 	

@@ -45,6 +45,12 @@ public class TestSingleBenchmark {
 	}
 	
 	@Test
+	public void testGetStatistics() {
+		assertThat(sb.getStatistics().count(), equalTo(1L));
+		assertThat(sb.getStatistics().mean(), equalTo(sb.getTime()));
+	}
+	
+	@Test
 	public void testToString() {
 		assertThat(sb.toString(), equalTo(sb.getTime() + "ms"));
 	}
