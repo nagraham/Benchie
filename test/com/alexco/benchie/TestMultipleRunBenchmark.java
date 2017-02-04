@@ -1,11 +1,15 @@
 package com.alexco.benchie;
 
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 
 import org.junit.Test;
 
@@ -44,6 +48,21 @@ public class TestMultipleRunBenchmark {
 		assertThat(stats.mean(), lessThan(20.0));
 		assertThat(stats.max(), greaterThan(0.0));
 		assertThat(stats.max(), lessThan(20.0));
+	}
+	
+	@Test
+	public void testToString_withoutName() {
+		String s = mrb.toString();
+		Statistics stats = mrb.getStatistics();
+		assertThat(s, stringContainsInOrder(Arrays.asList(
+			"mean", "median", "std dev", "fastest", "slowest", "total",
+			String.format("%.3f", stats.mean()), 
+			String.format("%.3f", stats.median()),
+			String.format("%.3f", stats.stddev()), 
+			String.format("%.3f", stats.min()),
+			String.format("%.3f", stats.max()), 
+			String.format("%.3f", stats.sum())
+		)));
 	}
 
 }

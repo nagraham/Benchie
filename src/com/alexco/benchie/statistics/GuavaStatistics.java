@@ -1,5 +1,7 @@
 package com.alexco.benchie.statistics;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.math.Stats;
@@ -28,11 +30,13 @@ public class GuavaStatistics implements Statistics {
 	}
 	
 	public double median() {
-		int midpoint = sample.size() / 2;
-		if (sample.size() % 2 == 0) {
-			return (sample.get(midpoint) + sample.get(midpoint - 1)) / 2;
+		ArrayList<Double> sortedSample = new ArrayList<>(sample);
+		Collections.sort(sortedSample);
+		int midpoint = sortedSample.size() / 2;
+		if (sortedSample.size() % 2 == 0) {
+			return (sortedSample.get(midpoint) + sortedSample.get(midpoint - 1)) / 2;
 		} else {
-			return sample.get(midpoint);
+			return sortedSample.get(midpoint);
 		}
 	}
 	

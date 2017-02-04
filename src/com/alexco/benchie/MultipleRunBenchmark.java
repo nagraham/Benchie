@@ -1,6 +1,7 @@
 package com.alexco.benchie;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import com.alexco.benchie.statistics.Statistics;
@@ -43,8 +44,21 @@ public class MultipleRunBenchmark implements Benchmark {
 	
 	public void print() {}
 	
+	// TODO: Move table string formatter to its own class, because
+	// this won't scale to benchmarks that take 1000s of milliseconds
+	// (and it's rather messy and adhoc)
 	public String toString() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		sb.append("|   mean   |  median  | std dev  | fastest  | slowest  |  total   |\n");
+		Formatter f = new Formatter(sb);
+		f.format("| %-8.3f | %-8.3f | %-8.3f | %-8.3f | %-8.3f | %-8.3f |", 
+			stats.mean(), stats.median(), stats.stddev(), stats.min(), stats.max(), stats.sum()
+		);
+		String result = f.toString();
+		System.out.println(result);
+		System.out.println(stats.sample());
+		f.close();
+		return result;
 	}
 	
 	// ******************************************
