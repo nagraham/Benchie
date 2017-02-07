@@ -49,14 +49,19 @@ public class MultipleRunBenchmark implements Benchmark {
 	// (and it's rather messy and adhoc)
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		if (hasName()) {
+			sb.append("|      name      ");
+		}
 		sb.append("|   mean   |  median  | std dev  | fastest  | slowest  |  total   |\n");
 		Formatter f = new Formatter(sb);
+		if (hasName()) { 
+			f.format("| %-14s ", name);
+		}
 		f.format("| %-8.3f | %-8.3f | %-8.3f | %-8.3f | %-8.3f | %-8.3f |", 
 			stats.mean(), stats.median(), stats.stddev(), stats.min(), stats.max(), stats.sum()
 		);
 		String result = f.toString();
 		System.out.println(result);
-		System.out.println(stats.sample());
 		f.close();
 		return result;
 	}
@@ -74,4 +79,6 @@ public class MultipleRunBenchmark implements Benchmark {
 		algorithm.execute();
 		return System.nanoTime() - startTime;
 	}
+	
+	private boolean hasName() { return name.length() > 0; }
 }

@@ -65,4 +65,20 @@ public class TestMultipleRunBenchmark {
 		)));
 	}
 
+	@Test
+	public void testToString_withName() {
+		String s = mrbWithName.toString();
+		Statistics stats = mrbWithName.getStatistics();
+		assertThat(s, stringContainsInOrder(Arrays.asList(
+			"name", "mean", "median", "std dev", "fastest", "slowest", "total",
+			mrbWithName.getName(),
+			String.format("%.3f", stats.mean()), 
+			String.format("%.3f", stats.median()),
+			String.format("%.3f", stats.stddev()), 
+			String.format("%.3f", stats.min()),
+			String.format("%.3f", stats.max()), 
+			String.format("%.3f", stats.sum())
+		)));
+	}
+	
 }
