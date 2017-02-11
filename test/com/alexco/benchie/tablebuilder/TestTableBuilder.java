@@ -39,6 +39,13 @@ public class TestTableBuilder {
 	}
 	
 	@Test
+	public void testAddHeaders() {
+		TableBuilder result = tb.addHeaders("foo", "foobar", "batzing!");
+		assertThat(tb, equalTo(result));
+		assertThat(tb.toString(), equalTo("| foo | foobar | batzing! |\n"));
+	}
+	
+	@Test
 	public void testSetHeader_settingBeyondSize() {
 		exception.expect(IndexOutOfBoundsException.class);
 		tb.setHeader(100, "foo");
@@ -51,10 +58,18 @@ public class TestTableBuilder {
 	}
 	
 	@Test
-	public void testAddHeaders() {
-		TableBuilder result = tb.addHeaders("foo", "foobar", "batzing!");
+	public void testAddRow_singleRow() {
+		TableBuilder result = tb.addRow("foo", "foobar", "batzing!");
 		assertThat(tb, equalTo(result));
 		assertThat(tb.toString(), equalTo("| foo | foobar | batzing! |\n"));
+	}
+	
+	@Test
+	public void testAddRow_multipleRows() {
+		tb.addRow("foo", "foobar", "batzing!");
+		tb.addRow("A", "B", "C");
+		System.out.println(tb);
+		assertThat(tb.toString(), equalTo("| foo | foobar | batzing! |\n| A   | B      | C        |\n"));
 	}
 
 }

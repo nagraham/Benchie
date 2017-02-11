@@ -7,14 +7,21 @@ import java.util.List;
 public class TableBuilder {
 	
 	private final List<String> headers;
+	private final List<List<String>> rows;
+	private final List<Integer> maxColumnLengths;
 
 	public TableBuilder() {
 		this.headers = new ArrayList<String>();
+		this.rows = new ArrayList<List<String>>();
+		this.maxColumnLengths = new ArrayList<Integer>();
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(rowToString(headers));
+		for (List<String> row : rows) {
+			sb.append(rowToString(row));
+		}
 		return sb.toString();
 	}
 	
@@ -37,9 +44,13 @@ public class TableBuilder {
 		return this;
 	}
 	
-	public TableBuilder addRow(int row, String... strings) {
-	
-		return null;
+	public TableBuilder addRow(String... strings) {
+		List<String> newRow = new ArrayList<String>();
+		for (String s : strings) {
+			newRow.add(s);
+		}
+		rows.add(newRow);
+		return this;
 	}
 	
 	// ==============================================================
@@ -52,8 +63,9 @@ public class TableBuilder {
 		for (String cell : row) {
 			f.format("| %s ", cell);
 		}
-		f.format("|\n");
-		return f.toString();
+		String result = f.toString();
+		if (result.length() > 0) { result += "|\n"; }
+		return result;
 	}
 	
 }
